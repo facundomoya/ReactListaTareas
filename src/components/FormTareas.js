@@ -15,6 +15,9 @@ const FormTareas = () => {
         e.preventDefault()
         console.log("desde handlesubmit")
         setTareas([...tareas,tareaIndividual])
+        //limpiar el input
+        setTareaIndividual("")
+
     }
     return (
     //aqui va el maquetado y muy poca logica
@@ -27,7 +30,7 @@ const FormTareas = () => {
         </div>
         </form>
         <section className="container">
-            <ListaTareas></ListaTareas>
+            <ListaTareas arregloTareas={tareas}></ListaTareas>
         </section>
         </>
     );
