@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ListaTareas from "./ListaTareas";
 
 const FormTareas = () => {
   //aqui va la logica
+  let tareasLocalStorage = JSON.parse(localStorage.getItem("listaTareas")) || [];
   //crar los state necesarios
   const [tareaIndividual, setTareaIndividual] = useState("");
-  const [tareas, setTareas] = useState([]);
+  const [tareas, setTareas] = useState(tareasLocalStorage);
+
+  //aqui uso el ciclo de vida de un componente
+  useEffect(()=>{
+    //esto funciona en montaje y actualizacion
+    console.log("USE EFFECT")//si se agrega el arreglo vacio, solo se ejecuta la fase de montaje
+    localStorage.setItem("listaTareas",JSON.stringify(tareas))
+  },[tareas])//entre corchetes solo van los states, porque es lo que quiero que se modifiquen
+    
 
 /*   const guardarTarea = (e) => {
     console.log(e.target.value);
